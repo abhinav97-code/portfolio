@@ -23,7 +23,6 @@ body {
     cursor: pointer;
 }
 
-/* Main Wrapper */
 .ui-wrapper {
     position: relative;
     z-index: 10;
@@ -38,7 +37,7 @@ body {
 }
 
 .glass-card {
-    background: rgba(8, 12, 26, 0.76);
+    background: rgba(8, 12, 26, 0.78);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
     border: 1px solid rgba(255, 255, 255, 0.16);
@@ -47,9 +46,6 @@ body {
     pointer-events: auto;
 }
 
-/* =========================================================
-   HERO PANEL
-   ========================================================= */
 .hero-panel {
     display: flex;
     align-items: center;
@@ -142,9 +138,6 @@ body {
     margin-bottom: 12px;
 }
 
-/* =========================================================
-   PERFECT FIT 3D BUTTONS
-   ========================================================= */
 .action-flex {
     display: flex;
     flex-wrap: wrap;
@@ -196,16 +189,12 @@ body {
     box-shadow: 0 1px 0 rgba(0, 0, 0, 0.8);
 }
 
-/* Open Space Window for Solar System */
 .space-viewport {
     flex: 1;
     min-height: 290px;
     pointer-events: none;
 }
 
-/* =========================================================
-   DESKTOP VIEW: LEFT & RIGHT VERTICAL PLANET SIDEBARS
-   ========================================================= */
 .side-dock {
     position: fixed;
     top: 58%;
@@ -273,7 +262,6 @@ body {
     box-shadow: 0 0 22px rgba(0, 242, 254, 0.35);
 }
 
-/* Footer (Always Visible on Both Desktop & Mobile) */
 .footer-bar {
     text-align: center;
     padding: 12px 18px;
@@ -287,9 +275,6 @@ body {
     line-height: 1.5;
 }
 
-/* =========================================================
-   3D HOLOGRAPHIC ZOOM-OUT MODAL
-   ========================================================= */
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -418,9 +403,6 @@ body {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
 }
 
-/* =========================================================
-   MOBILE & SMALL TABLET VIEW (Bina Desktop Mode ke Ekdum Saaf!)
-   ========================================================= */
 @media (max-width: 900px) {
     .ui-wrapper {
         padding: 12px;
@@ -465,12 +447,10 @@ body {
         padding: 8px 12px;
     }
 
-    /* Beech ki khali jagah taaki mobile par poora Solar System bina kisi rukawat ke ghumta dikhe */
     .space-viewport {
         min-height: 270px;
     }
 
-    /* Mobile par Side-Dock ko fixed se hatakar Solar System ke neeche clean grid bana diya gaya hai */
     .docks-container {
         display: flex;
         flex-direction: column;

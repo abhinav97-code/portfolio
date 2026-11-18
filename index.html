@@ -8,15 +8,11 @@
 </head>
 <body>
 
-    <!-- Fullscreen 3D Solar System, Black Hole, Nebula & Meteoroids Canvas -->
     <canvas id="universe-canvas"></canvas>
 
-    <!-- Main UI Wrapper -->
     <div class="ui-wrapper">
         
-        <!-- TOP MAIN PROFILE SECTION -->
         <header class="hero-panel glass-card">
-            <!-- 360° Rotatable 3D Photo Model -->
             <div class="photo-3d-box" title="Click and Drag to Rotate 360°">
                 <canvas id="photo-canvas"></canvas>
                 <span class="drag-hint">↻ Drag 360° Model</span>
@@ -31,7 +27,6 @@
                 <p class="role-title">Data Verification, Operations, Analyst & Web Developer</p>
                 <p class="address-line">📍 Azamgarh, Uttar Pradesh, India</p>
 
-                <!-- 3D Clickable Contact & Social Buttons with Real SVG Logos -->
                 <div class="action-flex">
                     <a href="mailto:theboyz7052@gmail.com?subject=Opportunity%20for%20Abhinav%20Singh" class="btn-3d email-btn">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
@@ -53,10 +48,8 @@
             </div>
         </header>
 
-        <!-- OPEN SPACE WINDOW FOR 3D SOLAR SYSTEM (Iske peeche Suraj aur Planets ghumenge) -->
         <div class="space-viewport"></div>
 
-        <!-- PLANET NAVIGATION DOCKS (Desktop par Left-Right Vertical, Mobile par Neeche Clean Grid) -->
         <div class="docks-container">
             <aside class="side-dock left-dock">
                 <button class="planet-nav-btn" onclick="openPlanetModal('sun')">
@@ -100,13 +93,11 @@
             </aside>
         </div>
 
-        <!-- FOOTER (Desktop aur Mobile dono par hamesha saaf dikhega) -->
         <footer class="footer-bar glass-card">
             <p>© 2026 <strong>All Rights Reserved to Abhinav Singh</strong> | Crafted by <strong>Abhinav Singh</strong> | Azamgarh, Uttar Pradesh, India</p>
         </footer>
     </div>
 
-    <!-- 3D HOLOGRAPHIC ZOOM-OUT MODAL -->
     <div id="planet-modal-overlay" class="modal-overlay" onclick="closePlanetModal(event)">
         <div class="modal-card" id="modal-card">
             <button class="close-btn" onclick="forceCloseModal()">✕ Close</button>
@@ -115,11 +106,8 @@
         </div>
     </div>
 
-    <!-- Three.js Core Library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <!-- OrbitControls -->
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
-    <!-- Main Script -->
     <script src="script.js"></script>
 </body>
 </html>
