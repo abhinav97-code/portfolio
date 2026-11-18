@@ -11,50 +11,7 @@
     <!-- Fullscreen 3D Solar System, Black Hole, Nebula & Meteoroids Canvas -->
     <canvas id="universe-canvas"></canvas>
 
-    <!-- LEFT VERTICAL PLANET SIDEBAR (SUN & EARTH) -->
-    <aside class="side-dock left-dock">
-        <button class="planet-nav-btn" onclick="openPlanetModal('sun')">
-            <span class="p-icon">☀️</span>
-            <div>
-                <strong>SUN</strong>
-                <small>Executive Summary</small>
-            </div>
-        </button>
-        <button class="planet-nav-btn" onclick="openPlanetModal('earth')">
-            <span class="p-icon">🌍</span>
-            <div>
-                <strong>EARTH</strong>
-                <small>Tech Stack & Skills</small>
-            </div>
-        </button>
-    </aside>
-
-    <!-- RIGHT VERTICAL PLANET SIDEBAR (MARS, SATURN & MOON) -->
-    <aside class="side-dock right-dock">
-        <button class="planet-nav-btn" onclick="openPlanetModal('mars')">
-            <span class="p-icon">🔴</span>
-            <div>
-                <strong>MARS</strong>
-                <small>Featured Projects</small>
-            </div>
-        </button>
-        <button class="planet-nav-btn" onclick="openPlanetModal('saturn')">
-            <span class="p-icon">🪐</span>
-            <div>
-                <strong>SATURN</strong>
-                <small>Education & Certs</small>
-            </div>
-        </button>
-        <button class="planet-nav-btn" onclick="openPlanetModal('moon')">
-            <span class="p-icon">🌙</span>
-            <div>
-                <strong>MOON</strong>
-                <small>Work Style & Langs</small>
-            </div>
-        </button>
-    </aside>
-
-    <!-- Main UI Overlay -->
+    <!-- Main UI Wrapper -->
     <div class="ui-wrapper">
         
         <!-- TOP MAIN PROFILE SECTION -->
@@ -96,7 +53,54 @@
             </div>
         </header>
 
-        <!-- FOOTER -->
+        <!-- OPEN SPACE WINDOW FOR 3D SOLAR SYSTEM (Iske peeche Suraj aur Planets ghumenge) -->
+        <div class="space-viewport"></div>
+
+        <!-- PLANET NAVIGATION DOCKS (Desktop par Left-Right Vertical, Mobile par Neeche Clean Grid) -->
+        <div class="docks-container">
+            <aside class="side-dock left-dock">
+                <button class="planet-nav-btn" onclick="openPlanetModal('sun')">
+                    <span class="p-icon">☀️</span>
+                    <div>
+                        <strong>SUN</strong>
+                        <small>Executive Summary</small>
+                    </div>
+                </button>
+                <button class="planet-nav-btn" onclick="openPlanetModal('earth')">
+                    <span class="p-icon">🌍</span>
+                    <div>
+                        <strong>EARTH</strong>
+                        <small>Tech Stack & Skills</small>
+                    </div>
+                </button>
+            </aside>
+
+            <aside class="side-dock right-dock">
+                <button class="planet-nav-btn" onclick="openPlanetModal('mars')">
+                    <span class="p-icon">🔴</span>
+                    <div>
+                        <strong>MARS</strong>
+                        <small>Featured Projects</small>
+                    </div>
+                </button>
+                <button class="planet-nav-btn" onclick="openPlanetModal('saturn')">
+                    <span class="p-icon">🪐</span>
+                    <div>
+                        <strong>SATURN</strong>
+                        <small>Education & Certs</small>
+                    </div>
+                </button>
+                <button class="planet-nav-btn" onclick="openPlanetModal('moon')">
+                    <span class="p-icon">🌙</span>
+                    <div>
+                        <strong>MOON</strong>
+                        <small>Work Style & Langs</small>
+                    </div>
+                </button>
+            </aside>
+        </div>
+
+        <!-- FOOTER (Desktop aur Mobile dono par hamesha saaf dikhega) -->
         <footer class="footer-bar glass-card">
             <p>© 2026 <strong>All Rights Reserved to Abhinav Singh</strong> | Crafted by <strong>Abhinav Singh</strong> | Azamgarh, Uttar Pradesh, India</p>
         </footer>

@@ -107,8 +107,19 @@ const canvas = document.querySelector('#universe-canvas');
 const scene = new THREE.Scene();
 
 const camera = new THREE.PerspectiveCamera(58, window.innerWidth / window.innerHeight, 0.1, 350);
-camera.position.set(0, 7.2, 16.5);
-camera.lookAt(0, 1.8, 0);
+
+function adjustCameraForScreen() {
+    if (window.innerWidth <= 900) {
+        // Mobile Portrait View: Camera thoda door taaki poora Solar System screen ke andar rahe
+        camera.position.set(0, 8.2, 23.5);
+        camera.lookAt(0, 0.8, 0);
+    } else {
+        // Desktop / Laptop / Mobile Desktop-Site View
+        camera.position.set(0, 7.2, 16.5);
+        camera.lookAt(0, 1.8, 0);
+    }
+}
+adjustCameraForScreen();
 
 const renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
@@ -120,7 +131,7 @@ const sunPointLight = new THREE.PointLight(0xffdd88, 3.2, 90);
 sunPointLight.position.set(0, 0, 0);
 scene.add(ambientLight, sunPointLight);
 
-// --- A. FULL-SKY 3D STARFIELD (Taaki upar ka koi kona kala na dikhe) ---
+// --- A. FULL-SKY 3D STARFIELD ---
 const starCount = 6000;
 const starGeo = new THREE.BufferGeometry();
 const starPos = new Float32Array(starCount * 3);
@@ -177,21 +188,18 @@ const galaxyMat = new THREE.PointsMaterial({
 const galaxy = new THREE.Points(galaxyGeo, galaxyMat);
 scene.add(galaxy);
 
-// --- C. GARGANTUA 3D BLACK HOLE (Top-Right Empty Space ko Bharne ke liye) ---
+// --- C. GARGANTUA 3D BLACK HOLE (Top-Right) ---
 const blackHoleGroup = new THREE.Group();
-// Event Horizon (Deep Black Sphere)
 const bhCore = new THREE.Mesh(
     new THREE.SphereGeometry(1.1, 32, 32),
     new THREE.MeshBasicMaterial({ color: 0x000000 })
 );
-// Glowing Orange-Gold Accretion Disk
 const bhDisk1 = new THREE.Mesh(
     new THREE.RingGeometry(1.25, 2.7, 64),
     new THREE.MeshBasicMaterial({ color: 0xff8800, side: THREE.DoubleSide, transparent: true, opacity: 0.78 })
 );
 bhDisk1.rotation.x = Math.PI / 2.6;
 
-// Vertical Gravitational Lensing Halo
 const bhDisk2 = new THREE.Mesh(
     new THREE.RingGeometry(1.18, 1.85, 64),
     new THREE.MeshBasicMaterial({ color: 0xfde047, side: THREE.DoubleSide, transparent: true, opacity: 0.55 })
@@ -202,7 +210,7 @@ blackHoleGroup.add(bhCore, bhDisk1, bhDisk2);
 blackHoleGroup.position.set(11.5, 6.8, -8.0);
 scene.add(blackHoleGroup);
 
-// --- D. COSMIC NEBULA CLUSTER (Top-Left Empty Space ko Bharne ke liye) ---
+// --- D. COSMIC NEBULA CLUSTER (Top-Left) ---
 const nebulaCount = 1800;
 const nebulaGeo = new THREE.BufferGeometry();
 const nebulaPos = new Float32Array(nebulaCount * 3);
@@ -266,7 +274,7 @@ function resetMeteor(m) {
     m.userData.speed = 0.12 + Math.random() * 0.16;
 }
 
-// --- F. CLICKABLE 3D PLANETS (SUN, EARTH, MARS, SATURN, MOON) ---
+// --- F. CLICKABLE 3D PLANETS ---
 const clickablePlanets = [];
 
 function createOrbitRing(radius) {
@@ -282,7 +290,7 @@ function createOrbitRing(radius) {
     scene.add(ring);
 }
 
-// 1. SUN -> Executive Summary
+// 1. SUN
 const sunGeo = new THREE.SphereGeometry(1.4, 32, 32);
 const sunMat = new THREE.MeshBasicMaterial({ color: 0xffaa00 });
 const sunMesh = new THREE.Mesh(sunGeo, sunMat);
@@ -296,7 +304,7 @@ sunMesh.add(sunGlow);
 scene.add(sunMesh);
 clickablePlanets.push(sunMesh);
 
-// 2. EARTH -> Tech Stack & Skills
+// 2. EARTH
 createOrbitRing(3.6);
 const earthGroup = new THREE.Group();
 const earthMesh = new THREE.Mesh(
@@ -308,7 +316,7 @@ earthGroup.add(earthMesh);
 scene.add(earthGroup);
 clickablePlanets.push(earthMesh);
 
-// 3. MOON -> Work Style & Languages
+// 3. MOON
 const moonMesh = new THREE.Mesh(
     new THREE.SphereGeometry(0.24, 24, 24),
     new THREE.MeshStandardMaterial({ color: 0xe2e8f0, roughness: 0.6 })
@@ -317,7 +325,7 @@ moonMesh.userData = { id: 'moon', label: '🌙 MOON: Work Style' };
 earthGroup.add(moonMesh);
 clickablePlanets.push(moonMesh);
 
-// 4. MARS -> Featured Projects
+// 4. MARS
 createOrbitRing(5.8);
 const marsMesh = new THREE.Mesh(
     new THREE.SphereGeometry(0.55, 32, 32),
@@ -327,7 +335,7 @@ marsMesh.userData = { id: 'mars', label: '🔴 MARS: Projects' };
 scene.add(marsMesh);
 clickablePlanets.push(marsMesh);
 
-// 5. SATURN -> Education & Certifications
+// 5. SATURN
 createOrbitRing(8.2);
 const saturnGroup = new THREE.Group();
 const saturnMesh = new THREE.Mesh(
@@ -467,11 +475,9 @@ function animate() {
     sunMesh.rotation.y = t * 0.3;
     nebulaCloud.rotation.z = t * 0.02;
 
-    // Spin Black Hole Accretion Disk
     bhDisk1.rotation.z = -t * 0.8;
     bhDisk2.rotation.z = t * 0.6;
 
-    // Move Shooting Meteoroids
     meteoroids.forEach(m => {
         m.position.x += m.userData.speed;
         m.position.y -= m.userData.speed * 0.25;
@@ -480,36 +486,16 @@ function animate() {
         }
     });
 
-    // Orbit Earth
     earthGroup.position.x = Math.cos(t * 0.45) * 3.6;
     earthGroup.position.z = Math.sin(t * 0.45) * 3.6;
     earthMesh.rotation.y = t * 0.8;
 
-    // Orbit Moon
     moonMesh.position.x = Math.cos(t * 1.8) * 1.05;
     moonMesh.position.z = Math.sin(t * 1.8) * 1.05;
 
-    // Orbit Mars
     marsMesh.position.x = Math.cos(t * 0.32 + 2) * 5.8;
     marsMesh.position.z = Math.sin(t * 0.32 + 2) * 5.8;
     marsMesh.rotation.y = t * 0.7;
 
-    // Orbit Saturn
     saturnGroup.position.x = Math.cos(t * 0.22 + 4) * 8.2;
-    saturnGroup.position.z = Math.sin(t * 0.22 + 4) * 8.2;
-    saturnMesh.rotation.y = t * 0.5;
-
-    updatePlanetLabels();
-    pRing.rotation.z = t * 0.5;
-    photoControls.update();
-
-    renderer.render(scene, camera);
-    photoRenderer.render(photoScene, photoCamera);
-}
-animate();
-
-window.addEventListener('resize', () => {
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-});
+    saturnGroup.position.z = Math.sin(t * 0.22 + 4) *
